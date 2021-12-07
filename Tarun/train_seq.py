@@ -49,7 +49,7 @@ def normalize(X_func, y, Par):
     return X_func.astype(np.float32), y.astype(np.float32)
 
 
-# @tf.function(jit_compile=True)
+@tf.function()
 def train(seq_model, X, y):
     with tf.GradientTape() as tape:
         y_hat = seq_model(X)
@@ -65,8 +65,8 @@ def main():
     Par = {}
     Par['address'] = 'seq'
 
-    train_dataset = np.load('data/0.1/res_1000.npz')
-    test_dataset = np.load('data/0.08/res_1000.npz')
+    train_dataset = np.load('../data/0.1/res_1000.npz')
+    test_dataset = np.load('../data/0.08/res_1000.npz')
 
     m = 20
     npoints_output = 200
@@ -90,8 +90,8 @@ def main():
     X_train, y_train = normalize(X_train, y_train, Par)
     X_test, y_test = normalize(X_test, y_test, Par)
 
-    print('X_func_train: ', X_train.shape, '\ny_train: ', y_train.shape)
-    print('X_func_test: ', X_test.shape, '\ny_test: ', y_test.shape)
+    # print('X_func_train: ', X_train.shape, '\ny_train: ', y_train.shape)
+    # print('X_func_test: ', X_test.shape, '\ny_test: ', y_test.shape)
 
     seq_model = Seq_Model(Par)
     n_epochs = 100000
@@ -104,12 +104,12 @@ def main():
         for end in np.arange(batch_size, X_train.shape[0]+1, batch_size):
             start = end - batch_size
 
-            print('Epoch: ', i, '\tBatch: ', start, '\t', end)
+            # print('Epoch: ', i, '\tBatch: ', start, '\t', end)
 
             loss = train(
                 seq_model, X_train[start:end], y_train[start:end])
 
-            print('Loss: ', loss)
+            # print('Loss: ', loss)
 
         if i % 1000 == 0:
             seq_model.save_weights(Par['address'] + "/model_"+str(i))
@@ -135,6 +135,7 @@ def main():
     plt.plot(index_list, train_loss_list, label="train")
     plt.plot(index_list, val_loss_list, label="val")
     plt.legend()
+    plt.title('Seq2Seq', fontsize=22)
     plt.yscale('log')
     plt.xlabel("Epoch", fontsize=18)
     plt.ylabel("MSE", fontsize=18)

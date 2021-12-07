@@ -46,7 +46,7 @@ class Seq_Model(tf.keras.Model):
         self.dense = tf.keras.layers.Dense(
             self.latent_dim)
 
-    # @tf.function(jit_compile=True)
+    @tf.function()
     def call(self, X):
         X = tf.convert_to_tensor(X)
 
@@ -59,13 +59,13 @@ class Seq_Model(tf.keras.Model):
 
         # X = tf.reshape(X, [-1, self.window_size, 1])
 
-        print("X shape: ", X.shape)
+        # print("X shape: ", X.shape)
 
         whole_sequence_output, final_state = self.encoder(X)
 
-        print("encoder_output whole_sequence_output shape: ",
-              whole_sequence_output.shape)
-        print("encoder_output final_state shape: ", final_state.shape)
+        # print("encoder_output whole_sequence_output shape: ",
+        #   whole_sequence_output.shape)
+        # print("encoder_output final_state shape: ", final_state.shape)
 
         # decoder_embeddings = self.decoder_embed(y)
 
@@ -74,20 +74,21 @@ class Seq_Model(tf.keras.Model):
         decoder_output, _ = self.decoder(
             whole_sequence_output, initial_state=final_state)
 
-        print("decoder_output shape: ", decoder_output.shape)
+        # print("decoder_output shape: ", decoder_output.shape)
 
         y_pred = self.dense(decoder_output)
 
-        print("y_pred shape: ", y_pred.shape)
+        # print("y_pred shape: ", y_pred.shape)
 
         return(y_pred)
 
+    @tf.function()
     def loss(self, y_pred, y_train):
 
         #-------------------------------------------------------------#
         # Total Loss
-        print("Shape y_pred: ", y_pred.shape)
-        print("Shape y_train: ", y_train.shape)
+        # print("Shape y_pred: ", y_pred.shape)
+        # print("Shape y_train: ", y_train.shape)
 
         train_loss = tf.reduce_mean(tf.square(y_pred - y_train))
 
@@ -95,6 +96,6 @@ class Seq_Model(tf.keras.Model):
         #     tf.cast(tf.keras.losses.sparse_categorical_crossentropy(y_train, y_pred, from_logits=True), dtype=tf.float32))
         #-------------------------------------------------------------#
 
-        print("train_loss: ", train_loss)
+        # print("train_loss: ", train_loss)
 
         return([train_loss])
