@@ -7,8 +7,8 @@ from tensorflow.keras import Sequential, Model, Input
 from tensorflow.keras.layers import Reshape, Conv2D, PReLU, Flatten, Dense, Activation
 from tensorflow.keras.losses import MeanSquaredError
 
-import matplotlib
-matplotlib.use('Agg')
+# import matplotlib
+# matplotlib.use('Agg')
 
 
 class Seq_Model(tf.keras.Model):

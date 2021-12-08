@@ -72,11 +72,11 @@ def main():
     y_train = tf.reshape(y_train, [-1, m, 1])
     y_test = tf.reshape(y_test, [-1, m, 1])
 
-    Par['p_mean'] = tf.reduce_mean(X_train)
-    Par['p_std'] = tf.reduce_std(X_train)
+    Par['p_mean'] = tf.math.reduce_mean(X_train)
+    Par['p_std'] = tf.math.reduce_std(X_train)
 
-    Par['r_mean'] = tf.reduce_mean(y_train)
-    Par['r_std'] = tf.reduce_std(y_train)
+    Par['r_mean'] = tf.math.reduce_mean(y_train)
+    Par['r_std'] = tf.math.reduce_std(y_train)
 
     plt.plot(range(len(X_train[0])), X_train[0])
     plt.show()
@@ -110,8 +110,16 @@ def main():
         y_test = tf.reshape(y_test, [-1, m, 1])
 
         y_pred = seq_model(X_test)
-        mse = tf.reduce_mean((y_pred - y_test)**2)
+        mse = tf.math.reduce_mean((y_pred - y_test)**2)
         print('MSE: {:.4e}'.format(mse))
+
+        # plt.plot(range(len(X_test[0])), X_test[0])
+        # plt.plot(range(len(y_test[0])), y_test[0])
+        # plt.plot(range(len(y_pred[0])), y_pred[0])
+        # plt.show()
+
+        y_pred = tf.cast(y_pred, tf.float64)
+        y_test = tf.cast(y_test, tf.float64)
 
         y_pred = y_pred*Par['r_std'] + Par['r_mean']
         y_test = y_test*Par['r_std'] + Par['r_mean']
