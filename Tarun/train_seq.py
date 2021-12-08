@@ -32,6 +32,9 @@ def preprocess(dataset, m, npoints_output, is_test=False):
     # X_loc  = np.linspace(t_min, t_max, npoints_output)[:, None] #[npoints_output,1]
     y = R(np.linspace(t_min, t_max, m))  # [1500, npoints_output]
 
+    X_func = tf.convert_to_tensor(X_func)
+    y = tf.convert_to_tensor(y)
+
     if is_test:
         X_func = X_func[:50]
         y = y[:50]
@@ -46,10 +49,11 @@ def normalize(X_func, y, Par):
     X_func = (X_func - Par['p_mean'])/Par['p_std']
     y = (y - Par['r_mean'])/Par['r_std']
 
-    return X_func.astype(np.float32), y.astype(np.float32)
+    # return X_func.astype(np.float32), y.astype(np.float32)
+    return tf.cast(X_func, tf.float32), tf.cast(y, tf.float32)
 
 
-@tf.function()
+# @tf.function()
 def train(seq_model, X, y):
     with tf.GradientTape() as tape:
         y_hat = seq_model(X)
@@ -76,16 +80,16 @@ def main():
     X_test, y_test = preprocess(
         test_dataset, m, npoints_output, is_test=True)
 
-    X_train = np.reshape(X_train, [-1, m, 1])
-    X_test = np.reshape(X_test, [-1, m, 1])
-    y_train = np.reshape(y_train, [-1, m, 1])
-    y_test = np.reshape(y_test, [-1, m, 1])
+    X_train = tf.reshape(X_train, [-1, m, 1])
+    X_test = tf.reshape(X_test, [-1, m, 1])
+    y_train = tf.reshape(y_train, [-1, m, 1])
+    y_test = tf.reshape(y_test, [-1, m, 1])
 
-    Par['p_mean'] = np.mean(X_train)
-    Par['p_std'] = np.std(X_train)
+    Par['p_mean'] = tf.math.reduce_mean(X_train)
+    Par['p_std'] = tf.math.reduce_std(X_train)
 
-    Par['r_mean'] = np.mean(y_train)
-    Par['r_std'] = np.std(y_train)
+    Par['r_mean'] = tf.math.reduce_mean(y_train)
+    Par['r_std'] = tf.math.reduce_std(y_train)
 
     X_train, y_train = normalize(X_train, y_train, Par)
     X_test, y_test = normalize(X_test, y_test, Par)
@@ -94,7 +98,7 @@ def main():
     # print('X_func_test: ', X_test.shape, '\ny_test: ', y_test.shape)
 
     seq_model = Seq_Model(Par)
-    n_epochs = 100000
+    n_epochs = 10000
     batch_size = 150
 
     print("Seq2Seq Training Begins")
@@ -118,7 +122,8 @@ def main():
 
             y_hat = seq_model(X_test)
 
-            val_loss = np.mean((y_hat - y_test)**2)
+            # val_loss = np.mean((y_hat - y_test)**2)
+            val_loss = tf.reduce_mean((y_hat - y_test)**2)
 
             print("epoch:" + str(i) + ", Train Loss:" + "{:.3e}".format(train_loss) + ", Val Loss:" + "{:.3e}".format(
                 val_loss) + ", elapsed time: " + str(int(time.time()-begin_time)) + "s")

@@ -14,7 +14,7 @@ matplotlib.use('Agg')
 class Seq_Model(tf.keras.Model):
     def __init__(self, Par):
         super(Seq_Model, self).__init__()
-        np.random.seed(23)
+        # np.random.seed(23)
         tf.random.set_seed(23)
 
         # Defining some model parameters
@@ -43,10 +43,13 @@ class Seq_Model(tf.keras.Model):
         self.decoder = tf.keras.layers.GRU(
             self.window_size, return_sequences=True, return_state=True)
 
-        self.dense = tf.keras.layers.Dense(
-            self.latent_dim)
+        self.dense1 = tf.keras.layers.Dense(
+            self.window_size)
 
-    @tf.function()
+        # self.dense2 = tf.keras.layers.Dense(
+        #     1)
+
+    # @tf.function()
     def call(self, X):
         X = tf.convert_to_tensor(X)
 
@@ -63,8 +66,7 @@ class Seq_Model(tf.keras.Model):
 
         whole_sequence_output, final_state = self.encoder(X)
 
-        # print("encoder_output whole_sequence_output shape: ",
-        #   whole_sequence_output.shape)
+        # print("encoder_output whole_sequence_output shape: ", whole_sequence_output.shape)
         # print("encoder_output final_state shape: ", final_state.shape)
 
         # decoder_embeddings = self.decoder_embed(y)
@@ -74,15 +76,24 @@ class Seq_Model(tf.keras.Model):
         decoder_output, _ = self.decoder(
             whole_sequence_output, initial_state=final_state)
 
+        decoder_output = tf.reshape(
+            decoder_output, [tf.shape(decoder_output)[0], -1])
+
         # print("decoder_output shape: ", decoder_output.shape)
 
-        y_pred = self.dense(decoder_output)
+        # logits1 = self.dense1(decoder_output)
+
+        y_pred = self.dense1(decoder_output)
+
+        y_pred = tf.reshape(y_pred, [-1, self.window_size, 1])
 
         # print("y_pred shape: ", y_pred.shape)
 
+        # option 1 : Return decoder_output as y_pred (batch_size, window_size, 1)
+
         return(y_pred)
 
-    @tf.function()
+    # @tf.function()
     def loss(self, y_pred, y_train):
 
         #-------------------------------------------------------------#
