@@ -39,7 +39,7 @@ def normalize(X_func, y, Par):
     return X_func.astype(np.float32), y.astype(np.float32)
 
 
-@tf.function(jit_compile=True)
+@tf.function()
 def train(lstm_model, X, y):
     with tf.GradientTape() as tape:
         y_hat = lstm_model(X)
@@ -55,12 +55,12 @@ def train(lstm_model, X, y):
 
 def main():
     Par = {}
-    Par['address'] = 'lstm'
+    Par['address'] = 'gru_200'
 
     train_dataset = np.load('../data/0.1/res_1000.npz')
     test_dataset = np.load('../data/0.08/res_1000.npz')
 
-    m = 20
+    m = 200
     npoints_output = 200
 
     X_train, y_train = preprocess(
@@ -86,22 +86,22 @@ def main():
     print('X_func_test: ', X_test.shape, '\ny_test: ', y_test.shape)
 
     lstm_model = LSTM_Model(Par)
-    n_epochs = 1000
+    n_epochs = 20000
     batch_size = 150
 
-    print("LSTM Training Begins")
+    print("GRU Training Begins")
     begin_time = time.time()
 
     for i in range(n_epochs+1):
         for end in np.arange(batch_size, X_train.shape[0]+1, batch_size):
             start = end - batch_size
 
-            print('Epoch: ', i, '\tBatch: ', start, '\t', end)
+            # print('Epoch: ', i, '\tBatch: ', start, '\t', end)
 
             loss = train(
                 lstm_model, X_train[start:end], y_train[start:end])
 
-            print('Loss: ', loss)
+            # print('Loss: ', loss)
 
         if i % 1000 == 0:
             lstm_model.save_weights(Par['address'] + "/model_"+str(i))
@@ -127,7 +127,7 @@ def main():
     plt.plot(index_list, train_loss_list, label="train")
     plt.plot(index_list, val_loss_list, label="val")
     plt.legend()
-    plt.title('LSTM', fontsize=22)
+    plt.title('GRU', fontsize=22)
     plt.yscale('log')
     plt.xlabel("Epoch", fontsize=18)
     plt.ylabel("MSE", fontsize=18)
