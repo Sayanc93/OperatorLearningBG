@@ -98,7 +98,7 @@ def main():
     # print('X_func_test: ', X_test.shape, '\ny_test: ', y_test.shape)
 
     seq_model = Seq_Model(Par)
-    n_epochs = 10000
+    n_epochs = 1000
     batch_size = 150
 
     print("Seq2Seq Training Begins")
