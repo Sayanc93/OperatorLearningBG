@@ -6,7 +6,7 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import Model, Sequential
-from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.layers import LSTM, Dense, GRU
 from tensorflow.keras.losses import MeanSquaredError
 
 
@@ -39,8 +39,8 @@ class LSTM_Model(Model):
         self.optimizer = tf.keras.optimizers.Adam(learning_rate=self.lr)
 
         self.model = Sequential()
-        self.model.add(LSTM(20))
-        self.model.add(Dense(20, activation='relu'))
+        self.model.add(GRU(50))
+        self.model.add(Dense(200))
 
     @tf.function()
     def call(self, X):
