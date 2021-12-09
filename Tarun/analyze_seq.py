@@ -42,12 +42,12 @@ def normalize(X_func, y, Par):
 
 def main():
     Par = {}
-    Par['address'] = 'seq_80'
+    Par['address'] = 'seq_200'
 
     train_dataset = np.load('../data/0.1/res_1000.npz')
     test_dataset = np.load('../data/0.08/res_1000.npz')
 
-    m = 80
+    m = 200
     npoints_output = 200
 
     X_train, y_train = preprocess(
@@ -76,8 +76,10 @@ def main():
     # print('X_func_test: ', X_func_test.shape, '\nX_loc_test: ', X_loc_test.shape, '\ny_test: ', y_test.shape)
 
     seq_model = Seq_Model(Par)
-    seq_model_address = 'seq_80/model_10000'
+    seq_model_address = 'seq_200/model_10000'
     seq_model.load_weights(seq_model_address)
+
+    mse_list = []
 
     for i in [0.07, 0.08, 0.09, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]:
         print('\nGRF(l={:.1})'.format(i))
@@ -87,7 +89,7 @@ def main():
         # address = 'data/'+str(i)+'/res_1000.npz'
         test_dataset = np.load(address)
 
-        m = 80
+        m = 200
         npoints_output = 500
 
         X_test, y_test = preprocess(
@@ -105,6 +107,7 @@ def main():
 
         y_pred = seq_model(X_test)
         mse = tf.math.reduce_mean((y_pred - y_test)**2)
+        mse_list.append(mse)
         print('MSE: {:.4e}'.format(mse))
 
         y_pred = tf.cast(y_pred, tf.float64)
@@ -116,7 +119,7 @@ def main():
         y_truth = y_truth*Par['r_std'] + Par['r_mean']
 
         plt.figure(figsize=(10, 10))
-        plt.plot(np.ravel(np.linspace(0, 5*10**-4, 80)),
+        plt.plot(np.ravel(np.linspace(0, 5*10**-4, 200)),
                  np.ravel(y_pred), label='Seq2Seq')
         plt.plot(np.ravel(np.linspace(0, 5*10**-4, 1000)),
                  np.ravel(y_truth), label='truth')
@@ -125,8 +128,10 @@ def main():
         plt.legend(fontsize=16)
         plt.title('GRF(l={:.1})'.format(i), fontsize=22)
         plt.savefig(
-            'seq_80/predictions/'+str(i)+'.png')
+            'seq_200/predictions/'+str(i)+'.png')
         plt.close()
+
+    print("MSE LIST: ", mse_list)
 
 
 main()

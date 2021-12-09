@@ -29,7 +29,7 @@ class Seq_Model(tf.keras.Model):
         self.lr = 10**-4
         self.optimizer = tf.keras.optimizers.Adam(learning_rate=self.lr)
 
-        self.window_size = 80
+        self.window_size = 200
 
         self.encoder = tf.keras.layers.GRU(
             20, return_sequences=True, return_state=True)
