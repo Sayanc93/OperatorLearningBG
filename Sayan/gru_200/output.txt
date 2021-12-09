@@ -1,0 +1,31 @@
+X_func_train:  (1500, 200, 1) 
+y_train:  (1500, 200, 1)
+X_func_test:  (50, 200, 1) 
+y_test:  (50, 200, 1)
+GRU Training Begins
+y_hat shape:  (150, 200, 1)
+y shape:  (150, 200, 1)
+y_hat shape:  (150, 200, 1)
+y shape:  (150, 200, 1)
+epoch:0, Train Loss:1.018e+00, Val Loss:8.259e-01, elapsed time: 5s
+epoch:1000, Train Loss:1.111e-02, Val Loss:2.484e-02, elapsed time: 71s
+epoch:2000, Train Loss:3.335e-03, Val Loss:1.335e-02, elapsed time: 136s
+epoch:3000, Train Loss:1.372e-03, Val Loss:6.065e-03, elapsed time: 202s
+epoch:4000, Train Loss:9.179e-04, Val Loss:4.616e-03, elapsed time: 267s
+epoch:5000, Train Loss:5.780e-04, Val Loss:3.032e-03, elapsed time: 333s
+epoch:6000, Train Loss:3.737e-04, Val Loss:2.282e-03, elapsed time: 399s
+epoch:7000, Train Loss:3.204e-04, Val Loss:2.079e-03, elapsed time: 464s
+epoch:8000, Train Loss:2.763e-04, Val Loss:1.946e-03, elapsed time: 530s
+epoch:9000, Train Loss:2.731e-04, Val Loss:1.857e-03, elapsed time: 595s
+epoch:10000, Train Loss:2.422e-04, Val Loss:1.753e-03, elapsed time: 661s
+epoch:11000, Train Loss:2.288e-04, Val Loss:1.674e-03, elapsed time: 726s
+epoch:12000, Train Loss:1.994e-04, Val Loss:1.552e-03, elapsed time: 792s
+epoch:13000, Train Loss:1.942e-04, Val Loss:1.459e-03, elapsed time: 857s
+epoch:14000, Train Loss:1.645e-04, Val Loss:1.319e-03, elapsed time: 923s
+epoch:15000, Train Loss:1.568e-04, Val Loss:1.242e-03, elapsed time: 988s
+epoch:16000, Train Loss:1.413e-04, Val Loss:1.100e-03, elapsed time: 1054s
+epoch:17000, Train Loss:1.163e-04, Val Loss:9.977e-04, elapsed time: 1119s
+epoch:18000, Train Loss:1.119e-04, Val Loss:9.483e-04, elapsed time: 1185s
+epoch:19000, Train Loss:1.032e-04, Val Loss:9.022e-04, elapsed time: 1250s
+epoch:20000, Train Loss:8.637e-05, Val Loss:8.702e-04, elapsed time: 1316s
+Complete
