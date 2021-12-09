@@ -87,7 +87,7 @@ def main():
         # address = 'data/'+str(i)+'/res_1000.npz'
         test_dataset = np.load(address)
 
-        m = 20
+        m = 80
         npoints_output = 500
 
         X_test, y_test = preprocess(
@@ -116,7 +116,7 @@ def main():
         y_truth = y_truth*Par['r_std'] + Par['r_mean']
 
         plt.figure(figsize=(10, 10))
-        plt.plot(np.ravel(np.linspace(0, 5*10**-4, 20)),
+        plt.plot(np.ravel(np.linspace(0, 5*10**-4, 80)),
                  np.ravel(y_pred), label='Seq2Seq')
         plt.plot(np.ravel(np.linspace(0, 5*10**-4, 1000)),
                  np.ravel(y_truth), label='truth')
