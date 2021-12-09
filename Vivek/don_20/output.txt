@@ -1,0 +1,121 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 3597570
+##  Job Name : train_don_20
+##  Nodelist : gpu2101
+##      CPUs : 8
+##  Mem/Node : 32768 MB
+## Directory : /gpfs/data/gk/voommen/DL_course/Project/Vivek
+##   Started : Thu Dec  9 17:43:54 EST 2021
+###############################################################################
+don_20
+------
+
+X_func_train:  (1500, 20) 
+X_loc_train:  (500, 1) 
+y_train:  (1500, 500)
+X_func_test:  (50, 20) 
+X_loc_test:  (500, 1) 
+y_test:  (50, 500)
+DeepONet Training Begins
+epoch:0, Train Loss:1.003e+00, Val Loss:8.036e-01, elapsed time: 2s
+epoch:1000, Train Loss:4.491e-02, Val Loss:6.312e-02, elapsed time: 15s
+epoch:2000, Train Loss:1.503e-02, Val Loss:2.556e-02, elapsed time: 28s
+epoch:3000, Train Loss:5.216e-02, Val Loss:7.342e-02, elapsed time: 40s
+epoch:4000, Train Loss:8.398e-03, Val Loss:2.058e-02, elapsed time: 53s
+epoch:5000, Train Loss:1.008e-02, Val Loss:1.737e-02, elapsed time: 65s
+epoch:6000, Train Loss:1.061e-02, Val Loss:1.188e-02, elapsed time: 78s
+epoch:7000, Train Loss:7.991e-03, Val Loss:1.482e-02, elapsed time: 90s
+epoch:8000, Train Loss:6.202e-03, Val Loss:1.399e-02, elapsed time: 103s
+epoch:9000, Train Loss:2.699e-02, Val Loss:2.427e-02, elapsed time: 115s
+epoch:10000, Train Loss:3.400e-03, Val Loss:7.556e-03, elapsed time: 127s
+epoch:11000, Train Loss:3.508e-03, Val Loss:1.042e-02, elapsed time: 140s
+epoch:12000, Train Loss:1.647e-02, Val Loss:1.530e-02, elapsed time: 152s
+epoch:13000, Train Loss:2.180e-03, Val Loss:5.858e-03, elapsed time: 165s
+epoch:14000, Train Loss:1.570e-03, Val Loss:4.300e-03, elapsed time: 177s
+epoch:15000, Train Loss:1.307e-02, Val Loss:1.216e-02, elapsed time: 190s
+epoch:16000, Train Loss:1.123e-03, Val Loss:3.069e-03, elapsed time: 202s
+epoch:17000, Train Loss:3.541e-03, Val Loss:5.259e-03, elapsed time: 215s
+epoch:18000, Train Loss:1.759e-03, Val Loss:4.058e-03, elapsed time: 227s
+epoch:19000, Train Loss:1.351e-03, Val Loss:3.287e-03, elapsed time: 240s
+epoch:20000, Train Loss:9.392e-04, Val Loss:2.746e-03, elapsed time: 252s
+epoch:21000, Train Loss:1.530e-03, Val Loss:2.844e-03, elapsed time: 265s
+epoch:22000, Train Loss:3.372e-03, Val Loss:6.327e-03, elapsed time: 277s
+epoch:23000, Train Loss:9.354e-04, Val Loss:2.869e-03, elapsed time: 290s
+epoch:24000, Train Loss:6.935e-04, Val Loss:2.478e-03, elapsed time: 302s
+epoch:25000, Train Loss:2.065e-03, Val Loss:4.320e-03, elapsed time: 315s
+epoch:26000, Train Loss:6.155e-04, Val Loss:2.322e-03, elapsed time: 327s
+epoch:27000, Train Loss:6.081e-04, Val Loss:2.342e-03, elapsed time: 340s
+epoch:28000, Train Loss:8.620e-04, Val Loss:2.695e-03, elapsed time: 352s
+epoch:29000, Train Loss:2.579e-03, Val Loss:3.071e-03, elapsed time: 364s
+epoch:30000, Train Loss:9.676e-04, Val Loss:2.438e-03, elapsed time: 377s
+epoch:31000, Train Loss:6.489e-04, Val Loss:2.339e-03, elapsed time: 389s
+epoch:32000, Train Loss:1.397e-03, Val Loss:2.498e-03, elapsed time: 402s
+epoch:33000, Train Loss:4.735e-04, Val Loss:1.490e-03, elapsed time: 414s
+epoch:34000, Train Loss:4.171e-04, Val Loss:1.350e-03, elapsed time: 427s
+epoch:35000, Train Loss:3.240e-04, Val Loss:1.245e-03, elapsed time: 439s
+epoch:36000, Train Loss:6.390e-04, Val Loss:1.548e-03, elapsed time: 452s
+epoch:37000, Train Loss:7.732e-04, Val Loss:1.661e-03, elapsed time: 464s
+epoch:38000, Train Loss:7.213e-04, Val Loss:1.201e-03, elapsed time: 477s
+epoch:39000, Train Loss:5.986e-04, Val Loss:1.612e-03, elapsed time: 489s
+epoch:40000, Train Loss:2.392e-04, Val Loss:1.091e-03, elapsed time: 502s
+epoch:41000, Train Loss:1.013e-03, Val Loss:1.966e-03, elapsed time: 514s
+epoch:42000, Train Loss:2.765e-04, Val Loss:1.169e-03, elapsed time: 527s
+epoch:43000, Train Loss:3.126e-04, Val Loss:1.076e-03, elapsed time: 539s
+epoch:44000, Train Loss:5.141e-04, Val Loss:1.315e-03, elapsed time: 551s
+epoch:45000, Train Loss:5.430e-04, Val Loss:1.492e-03, elapsed time: 564s
+epoch:46000, Train Loss:8.776e-04, Val Loss:1.676e-03, elapsed time: 576s
+epoch:47000, Train Loss:6.771e-04, Val Loss:1.478e-03, elapsed time: 589s
+epoch:48000, Train Loss:5.558e-04, Val Loss:1.241e-03, elapsed time: 601s
+epoch:49000, Train Loss:2.708e-04, Val Loss:1.006e-03, elapsed time: 614s
+epoch:50000, Train Loss:5.744e-04, Val Loss:1.410e-03, elapsed time: 626s
+epoch:51000, Train Loss:3.479e-04, Val Loss:1.093e-03, elapsed time: 639s
+epoch:52000, Train Loss:2.415e-04, Val Loss:9.819e-04, elapsed time: 651s
+epoch:53000, Train Loss:1.822e-03, Val Loss:2.380e-03, elapsed time: 664s
+epoch:54000, Train Loss:1.998e-04, Val Loss:9.953e-04, elapsed time: 676s
+epoch:55000, Train Loss:1.522e-04, Val Loss:8.423e-04, elapsed time: 689s
+epoch:56000, Train Loss:1.561e-03, Val Loss:2.838e-03, elapsed time: 701s
+epoch:57000, Train Loss:3.065e-04, Val Loss:9.481e-04, elapsed time: 714s
+epoch:58000, Train Loss:1.851e-04, Val Loss:8.709e-04, elapsed time: 726s
+epoch:59000, Train Loss:1.527e-04, Val Loss:7.264e-04, elapsed time: 739s
+epoch:60000, Train Loss:4.167e-04, Val Loss:1.005e-03, elapsed time: 751s
+epoch:61000, Train Loss:1.383e-04, Val Loss:6.882e-04, elapsed time: 764s
+epoch:62000, Train Loss:1.248e-04, Val Loss:6.351e-04, elapsed time: 776s
+epoch:63000, Train Loss:7.112e-04, Val Loss:1.201e-03, elapsed time: 788s
+epoch:64000, Train Loss:2.845e-04, Val Loss:7.811e-04, elapsed time: 801s
+epoch:65000, Train Loss:1.209e-04, Val Loss:6.069e-04, elapsed time: 813s
+epoch:66000, Train Loss:1.769e-04, Val Loss:6.615e-04, elapsed time: 826s
+epoch:67000, Train Loss:2.114e-04, Val Loss:6.468e-04, elapsed time: 838s
+epoch:68000, Train Loss:1.406e-04, Val Loss:5.697e-04, elapsed time: 851s
+epoch:69000, Train Loss:2.397e-04, Val Loss:6.969e-04, elapsed time: 863s
+epoch:70000, Train Loss:4.339e-04, Val Loss:9.758e-04, elapsed time: 876s
+epoch:71000, Train Loss:1.161e-03, Val Loss:1.108e-03, elapsed time: 888s
+epoch:72000, Train Loss:9.243e-05, Val Loss:5.147e-04, elapsed time: 900s
+epoch:73000, Train Loss:2.841e-04, Val Loss:6.773e-04, elapsed time: 913s
+epoch:74000, Train Loss:2.037e-04, Val Loss:6.184e-04, elapsed time: 925s
+epoch:75000, Train Loss:1.538e-04, Val Loss:5.863e-04, elapsed time: 938s
+epoch:76000, Train Loss:4.129e-04, Val Loss:8.390e-04, elapsed time: 950s
+epoch:77000, Train Loss:3.074e-04, Val Loss:7.052e-04, elapsed time: 963s
+epoch:78000, Train Loss:1.394e-04, Val Loss:5.402e-04, elapsed time: 975s
+epoch:79000, Train Loss:8.626e-05, Val Loss:4.994e-04, elapsed time: 988s
+epoch:80000, Train Loss:8.233e-05, Val Loss:5.004e-04, elapsed time: 1000s
+epoch:81000, Train Loss:2.593e-04, Val Loss:8.605e-04, elapsed time: 1013s
+epoch:82000, Train Loss:1.561e-04, Val Loss:6.248e-04, elapsed time: 1025s
+epoch:83000, Train Loss:6.878e-05, Val Loss:4.647e-04, elapsed time: 1038s
+epoch:84000, Train Loss:2.011e-03, Val Loss:2.172e-03, elapsed time: 1050s
+epoch:85000, Train Loss:7.422e-05, Val Loss:4.778e-04, elapsed time: 1063s
+epoch:86000, Train Loss:8.790e-05, Val Loss:5.001e-04, elapsed time: 1075s
+epoch:87000, Train Loss:6.492e-05, Val Loss:4.725e-04, elapsed time: 1087s
+epoch:88000, Train Loss:2.851e-04, Val Loss:6.447e-04, elapsed time: 1100s
+epoch:89000, Train Loss:6.068e-04, Val Loss:1.095e-03, elapsed time: 1112s
+epoch:90000, Train Loss:3.367e-04, Val Loss:7.100e-04, elapsed time: 1125s
+epoch:91000, Train Loss:1.092e-04, Val Loss:5.147e-04, elapsed time: 1137s
+epoch:92000, Train Loss:1.601e-04, Val Loss:6.176e-04, elapsed time: 1150s
+epoch:93000, Train Loss:2.839e-04, Val Loss:6.829e-04, elapsed time: 1162s
+epoch:94000, Train Loss:1.456e-04, Val Loss:5.450e-04, elapsed time: 1175s
+epoch:95000, Train Loss:7.643e-05, Val Loss:4.680e-04, elapsed time: 1187s
+epoch:96000, Train Loss:1.310e-04, Val Loss:4.927e-04, elapsed time: 1200s
+epoch:97000, Train Loss:1.576e-04, Val Loss:5.340e-04, elapsed time: 1212s
+epoch:98000, Train Loss:7.663e-05, Val Loss:5.231e-04, elapsed time: 1225s
+epoch:99000, Train Loss:5.443e-04, Val Loss:6.806e-04, elapsed time: 1237s
+epoch:100000, Train Loss:1.504e-04, Val Loss:5.672e-04, elapsed time: 1249s
+Complete
