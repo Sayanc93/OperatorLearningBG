@@ -67,12 +67,12 @@ def train(seq_model, X, y):
 
 def main():
     Par = {}
-    Par['address'] = 'seq'
+    Par['address'] = 'seq_80'
 
     train_dataset = np.load('../data/0.1/res_1000.npz')
     test_dataset = np.load('../data/0.08/res_1000.npz')
 
-    m = 20
+    m = 80
     npoints_output = 200
 
     X_train, y_train = preprocess(
@@ -98,7 +98,7 @@ def main():
     # print('X_func_test: ', X_test.shape, '\ny_test: ', y_test.shape)
 
     seq_model = Seq_Model(Par)
-    n_epochs = 1000
+    n_epochs = 10000
     batch_size = 150
 
     print("Seq2Seq Training Begins")

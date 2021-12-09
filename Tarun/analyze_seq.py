@@ -42,12 +42,12 @@ def normalize(X_func, y, Par):
 
 def main():
     Par = {}
-    Par['address'] = 'seq'
+    Par['address'] = 'seq_80'
 
     train_dataset = np.load('../data/0.1/res_1000.npz')
     test_dataset = np.load('../data/0.08/res_1000.npz')
 
-    m = 20
+    m = 80
     npoints_output = 200
 
     X_train, y_train = preprocess(
@@ -76,7 +76,7 @@ def main():
     # print('X_func_test: ', X_func_test.shape, '\nX_loc_test: ', X_loc_test.shape, '\ny_test: ', y_test.shape)
 
     seq_model = Seq_Model(Par)
-    seq_model_address = 'seq/model_10000'
+    seq_model_address = 'seq_80/model_10000'
     seq_model.load_weights(seq_model_address)
 
     for i in [0.07, 0.08, 0.09, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]:
@@ -125,7 +125,7 @@ def main():
         plt.legend(fontsize=16)
         plt.title('GRF(l={:.1})'.format(i), fontsize=22)
         plt.savefig(
-            'seq/predictions/'+str(i)+'.png')
+            'seq_80/predictions/'+str(i)+'.png')
         plt.close()
 
 

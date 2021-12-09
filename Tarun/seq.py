@@ -29,13 +29,13 @@ class Seq_Model(tf.keras.Model):
         self.lr = 10**-4
         self.optimizer = tf.keras.optimizers.Adam(learning_rate=self.lr)
 
-        self.window_size = 20
+        self.window_size = 80
 
         self.encoder = tf.keras.layers.GRU(
-            self.window_size, return_sequences=True, return_state=True)
+            20, return_sequences=True, return_state=True)
 
         self.decoder = tf.keras.layers.GRU(
-            self.window_size, return_sequences=True, return_state=True)
+            20, return_sequences=True, return_state=True)
 
         self.dense1 = tf.keras.layers.Dense(
             self.window_size)
