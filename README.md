@@ -17,13 +17,13 @@ plots for different l values (length scale of the Gaussian Random Field).
 To run DeepOnet:
 
 ```python
-    python don.py
+    python train_don.py
 ```
 
 To run Seq2Seq:
 
 ```python
-    python seq.py
+    python train_seq.py
 ```
 
 To run LSTM/GRU:
