@@ -43,9 +43,10 @@ def normalize(X_func, y, Par):
 
 
 def main():
-    if len(sys.argv) != 2 or sys.argv[1] not in {"LSTM","GRU"}:
-        print("USAGE: python train.py <Model Type>")
+    if len(sys.argv) != 3 or sys.argv[1] not in {"LSTM","GRU"} or sys.argv[2] == "":
+        print("USAGE: python train.py <Model Type> <M Value>")
         print("<Model Type>: [LSTM/GRU]")
+        print("<M Value>: 20/80/200")
         exit()
 
     Par = {}
@@ -54,10 +55,10 @@ def main():
     train_dataset = np.load('../data/0.1/res_1000.npz')
     test_dataset = np.load('../data/0.08/res_1000.npz')
 
-    m = 80
+    Par['m'] = int(sys.argv[2])
+    m = Par['m']
     npoints_output = 200
     Par['address'] = 'lstm_'+str(m) if sys.argv[1] == "LSTM" else 'gru_'+str(m)
-    Par['m'] = m
 
     X_train, y_train = preprocess(
         train_dataset, m, npoints_output)
@@ -125,7 +126,7 @@ def main():
 
         plt.figure(figsize=(10, 10))
         plt.plot(np.ravel(np.linspace(0, 5*10**-4, m)),
-                 np.ravel(y_pred), label='LSTM')
+                 np.ravel(y_pred), label=str(Par['model']))
         plt.plot(np.ravel(np.linspace(0, 5*10**-4, 1000)),
                  np.ravel(y_truth), label='truth')
         plt.xlabel('time (s)', fontsize=18)

@@ -57,19 +57,21 @@ def train(model, X, y):
 
 
 def main():
-    if len(sys.argv) != 2 or sys.argv[1] not in {"LSTM","GRU"}:
+    if len(sys.argv) != 3 or sys.argv[1] not in {"LSTM","GRU"} or sys.argv[2] == "":
         print("USAGE: python train.py <Model Type>")
         print("<Model Type>: [LSTM/GRU]")
+        print("<M Value>: 20/80/200")
         exit()
 
     Par = {}
-    Par['address'] = 'lstm' if sys.argv[1] == "LSTM" else 'gru'
+    Par['m'] = int(sys.argv[2])
+    m = Par['m']
+    Par['address'] = 'lstm_' + str(Par['m']) if sys.argv[1] == "LSTM" else 'gru_' + str(Par['m'])
     Par['model'] = 'lstm' if sys.argv[1] == "LSTM" else 'gru'
 
     train_dataset = np.load('../data/0.1/res_1000.npz')
     test_dataset = np.load('../data/0.08/res_1000.npz')
 
-    m = 20
     npoints_output = 200
 
     X_train, y_train = preprocess(
@@ -87,7 +89,6 @@ def main():
 
     Par['r_mean'] = np.mean(y_train)
     Par['r_std'] = np.std(y_train)
-    Par['m'] = m
 
     X_train, y_train = normalize(X_train, y_train, Par)
     X_test, y_test = normalize(X_test, y_test, Par)
@@ -109,7 +110,7 @@ def main():
                 model, X_train[start:end], y_train[start:end])
 
         if i % 1000 == 0:
-            model.save_weights(Par['address'] + "/"+Par['address']+"_"+str(i))
+            model.save_weights(Par['address'] + "/model_"+str(i))
 
             train_loss = loss.numpy()
 
