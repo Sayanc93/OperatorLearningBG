@@ -1,12 +1,4 @@
-## SLURM PROLOG ###############################################################
-##    Job ID : 3597753
-##  Job Name : train_don_200
-##  Nodelist : gpu2101
-##      CPUs : 8
-##  Mem/Node : 32768 MB
-## Directory : /gpfs/data/gk/voommen/DL_course/Project/Vivek
-##   Started : Thu Dec  9 17:46:02 EST 2021
-###############################################################################
+
 don_200
 ------
 
