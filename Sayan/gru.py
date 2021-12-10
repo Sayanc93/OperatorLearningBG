@@ -6,9 +6,7 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import Model, Sequential
-from tensorflow.keras.layers import LSTM, Dense, GRU
-from tensorflow.keras.losses import MeanSquaredError
-
+from tensorflow.keras.layers import Dense, GRU
 
 import matplotlib
 matplotlib.use('Agg')
@@ -22,10 +20,10 @@ import os
 
 tf.config.optimizer.set_jit(True)
 
-class LSTM_Model(Model):
+class GRU_Model(Model):
 
     def __init__(self, Par):
-        super(LSTM_Model, self).__init__()
+        super(GRU_Model, self).__init__()
         np.random.seed(23)
         tf.random.set_seed(23)
 
@@ -39,7 +37,7 @@ class LSTM_Model(Model):
         self.optimizer = tf.keras.optimizers.Adam(learning_rate=self.lr)
 
         self.model = Sequential()
-        self.model.add(LSTM(50))
+        self.model.add(GRU(50))
         self.model.add(Dense(Par['m']))
 
     @tf.function()
